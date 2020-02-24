@@ -1,0 +1,10 @@
+#container {
+    font-size: 0em;
+}
+.square {
+    display: inline-block;
+    margin: 0px;
+}
+.hovered {
+    background-color: aqua;
+}
