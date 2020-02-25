@@ -1,4 +1,10 @@
 const GRID_WIDTH = 960;
+let red = 0;
+let green = 0;
+let blue = 0;
+let rUp = true;
+let gUp = true;
+let bUp = true;
 
 function buildGrid(gridSize){
     const container = document.getElementById('container')
@@ -20,6 +26,22 @@ function buildGrid(gridSize){
     document.querySelectorAll('.square').forEach(square => {
         square.addEventListener('mouseover', () => {
             square.classList.add('hovered');
+            square.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+            
+            if (rUp) red++;
+            else red--;
+            if (red <= 0) rUp = true;
+            else if (red >= 255) rUp = false;
+
+            if (gUp) green+=2;
+            else green-=2;
+            if (green <= 0) gUp = true;
+            else if (green >= 255) gUp = false;
+
+            if (bUp) blue+=4;
+            else blue-=4;
+            if (blue <= 0) bUp = true;
+            else if (blue >= 255) bUp = false;
         });
     });
 }
@@ -27,9 +49,6 @@ function buildGrid(gridSize){
 document.getElementById('reset').addEventListener('click', () => {
     gridSize = window.prompt("What grid size?");
     buildGrid(gridSize);
-    // document.querySelectorAll('.square').forEach(square => {
-    //     square.classList.remove('hovered');
-    // });
 });
 
-buildGrid(4);
+buildGrid(50);
